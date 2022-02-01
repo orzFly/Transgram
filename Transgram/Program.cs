@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 
-string root = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
+string root = Directory.GetCurrentDirectory();
 string exeFile = Path.Combine(root, "Telegram.exe");
 if (!File.Exists(exeFile))
 {
-    throw new Exception("Place this program alongside Telegram.exe!");
+    throw new Exception("Run this program in the installation directory of Telegram Desktop (Cannot find Telegram.exe in " + root + ")!");
 }
 
 string backupFileName = "Telegram.bak";
