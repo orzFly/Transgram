@@ -65,9 +65,9 @@ void ReplaceUTF8(byte[] bytes, string find, string replace)
     if (replace.Length > find.Length) throw new ArgumentOutOfRangeException("replace", "replace is too long");
 
     var f = System.Text.Encoding.UTF8.GetBytes(find);
-    Array.Resize(ref f, f.Length + 2);
+    Array.Resize(ref f, f.Length + 1);
     var r = System.Text.Encoding.UTF8.GetBytes(replace);
-    if (r.Length > f.Length - 2) throw new ArgumentOutOfRangeException("replace", "replace is too long");
+    if (r.Length > f.Length - 1) throw new ArgumentOutOfRangeException("replace", "replace is too long");
     Array.Resize(ref r, f.Length);
 
     Console.WriteLine("Replace \"{0}\" -> \"{1}\" ({2} -> {3})", find, replace, BitConverter.ToString(f), BitConverter.ToString(r));
@@ -84,9 +84,9 @@ void ReplaceUnicode(byte[] bytes, string find, string replace)
     if (replace.Length > find.Length) throw new ArgumentOutOfRangeException("replace", "replace is too long");
 
     var f = System.Text.Encoding.Unicode.GetBytes(find);
-    Array.Resize(ref f, f.Length + 4);
+    Array.Resize(ref f, f.Length + 2);
     var r = System.Text.Encoding.Unicode.GetBytes(replace);
-    if (r.Length > f.Length - 4) throw new ArgumentOutOfRangeException("replace", "replace is too long");
+    if (r.Length > f.Length - 2) throw new ArgumentOutOfRangeException("replace", "replace is too long");
     Array.Resize(ref r, f.Length);
 
     Console.WriteLine("Replace \"{0}\" -> \"{1}\" ({2} -> {3})", find, replace, BitConverter.ToString(f), BitConverter.ToString(r));
